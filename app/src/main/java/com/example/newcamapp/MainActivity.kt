@@ -212,6 +212,7 @@ class MainActivity : AppCompatActivity() {
                 currentTabIndex = tab?.position ?: 0
                 refreshUIFromData()
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
