@@ -36,8 +36,9 @@ class GalleryActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var tabLayout: TabLayout
 
-    // Dropboxアクセストークン
-    private val ACCESS_TOKEN = "sl.u.AGe5ZKAO-y-XAF0f1Bs1J6ZYfOrjyIXSC8jAZ_s8KD62fWHe7rkYNnDAgtCbs02QAyIclrB4c2y1YGJvZBRTBFsjgzk3gUdRL47ML4gUm1Pa0YsMNKJy3iwismPWgj9gTus9ZCdAJqN-_y8VQbJrPVC8OWkD7lBb8xnpp4UJx192zMCqBEVaxrZpqkAHb01tMJI9hkfHXxu8TC7J-m4Wb_IYppYXaccrxFd1ps2JgGIiK2vGj2E2rveuB2zHRebHV1J971UGeVWiKsBdB6iAstIR7CSH8dHnAIT5gIPzl1DQRd4Fd6MlRrfy0RPmNy43-qLqc_eyWKkIPsnaozp7QWe4Rprj7KIoyu29Oy370A78q3eMT2tZNaVZSLRNSuVbt1bnEIzB_v0vAVXuc4b_HzcYC6mlx083gsikybBf_WWELMzEOL0rmBn20mLdmMFS4ppMyY3wbiaNKtC9rhwmrxOOhjrh3HBDvnu0J_b6mmZH5tCEBgnt-bysqEedmToHLbTit-c2gXylMGnumnRo7t08vhJ3Gz6XNL9RstgKOy8NpimJdyJbDdIhdDLIo3hXL5P5uXVlxIlotS3IPp__vvDsuf2TFi80cT9LwjcsOf-8aQC2Y_3fRIzXVaMkqgRoy8mEK3-OLfzxytkHa58cC4N4mxjxv8yWQB1BFmixxlS1ILCOV-H3lDlMDlzhb-L4BcjkRirOdHTgzbtFc1gCiPFp8AueZd6me9-HthukbIBhL_ZaHeO3HM1DiX6TsVFPKLQPDp5WEAYq6Cc_67AtdfOi6AkzjwHn0cefQVKmHU0G2U6yKdekX7l5W4A_aD05_q2benMXjFNattS6pLMcXC1S5GEK9RBIt7uhNs36tLafMmi0WA_0PcqP34SFS34B_Mh6uG4l5PprSU4pCt5BLqJrn4rMZM7Qf0bu3RAOWpJSAKeJRbk_6lF9y20R7JDgeg3u2UDduRZ0fEYiYBWHvGDn4EZmvr_iPS61yzd-lI3hPz979AJ_2IIzs82Pd8NkA_Vh2bu_Tc9jaoOTpGHusvSkTfp0x6oKNoEz830f_COjUrBNAtwLw0fpS9HmiD1PX1bWE29UdUfdZ_P0mOR3Bx4f867hdlpccpWhlVQEBRP1rMXZhWV1zMkW9o38w88Mbokx05x3oeNBcf55sjl_KO_Ngy3mAmoPU5aE0te4xASwekTYCbiMnN7iHBpl9gG9Ra0pxBj3SUgzQNpwlNT-HLumHXAs4Kl3jKUVdcs0CeOdL4SnL0J1KpzoXNOPN-abEcEz5vge3X1oKHZb0tFkyC8s"
+    // ★【重要】Dropboxアクセストークン
+    // 短期トークンは数時間で切れるため、エラーが出る場合は再度生成してください
+    private val ACCESS_TOKEN = "sl.u.AGe8rMclH5JfbiiytGKmofLU87MjNSmDu51ZuGgYKZ8raTp6U7VXH3Y6aRDddpn22uGRBbk8MMwIoxY5pCu2GTMm2LKflYqQNJJ-n_7nLakgpV0OOPyjs8B6X2y4mqiDUx6L77yTx7XGGjj-_euizOmzE7GUskrjsV4JFzl6r_euPpAgqr7KSHuPVaFewIuyRFZBU6tOwWuRXbDE42o81VcSf0fQQVKrI2xXTv8B6Enh0QrHq8Ky5YUD0a5rZlhuZ-mjU27ik-jM8eSaiXliPsXRYa7KEtKMcyQUv6vQtLtyzDxq0yzUkazLRMn8m__LDzdVn5IzsgXDnC6YamubQSIrkarYMAc4mlX6H8SoJlhiwpIKW-qf8YUGA2A98-6m15KnLGdQy2NIswfeVqa4Vhhvwt60UhT-klmStmcO1R8aZClBayWRfWX5301h1MHI-ZmEhFae6zAda37AHK2ezN7iaGQgu-Y1TCU1GGtLetsJ31ALo0H50BIJucucSTfdpW7326Y5lfLeNE-yISi66G7Bh_MPRHhDBmXKGajPGieq2eC4G1wzJBxEQyeEMdkg7vvZz2WYI2cUCjnd_-_jWEreG4TDZ4D7eHqjgc4FpRUIzCx9yxxfbIYYdej0rnNArSIbvYvZvUjtnyTzqHjKSVF0ao6Z60PMuvpRLt-6WFgGnoJFEJahFSQJ2D3G-eTwtEb9LHpxLqwXHijWO3duwVJxQnIZaYek8zYEj4X-e1KbNDeyUqDqvua9om8kaEBt94NFDTL7TM_1AE8XV4qulRy5ktAfdhceKISa1sXlf7OGfQ0zITO_DIC9DVROgssfd7H5tij7gSqfHdyXmEWnVilsrQe443RYZBZ-aMArx4_ETJchiIOOl5CKg9QM7E6Pjfoay6RqC7u2g4ytMTJC05u7M9lZGu0CMSnraTEDNzZGKLyeOUf1hbxp9Bml7jcmpFP7dAerZoNUklt4DU-57zw5K-J5cU0D3PflJSfkd0E1R96Texs75njTc7T1KU4E_IccMxI-ZBxRA734GJRkY-bN56ROUG6UwEPACWEBRIfK7SABh62ScxGMa4PWgMHDv3UJdSFqdnFf0PxU6XKjeKS-q0GZaJUMbRMoZ0EOPIqmAkucq-8UjZnPv6vKhEkSelnTvKcWISdLG4ZcOvM2zvz9EIU__BXQTqLQ-u7Zl-mz83fV3gzi9TAA3K_59NoGfWeiE9Tyt4GOixtA1_1-VEcB3rj6mxeLzKiYFzzPmUUK3PW04mQun8DIaIE_HnPnDtjMtR7z-kbsYdAHp-4ugXgP"
 
     private val dropboxClient by lazy {
         val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
@@ -68,7 +69,6 @@ class GalleryActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         tabLayout = findViewById(R.id.gallery_tab_layout)
 
-        // ボタンのIDを明示的に指定して取得
         val btnSendToBox = findViewById<Button>(R.id.btnSendToBox)
         val btnDeleteFolder = findViewById<Button>(R.id.btnDeleteFolder)
 
@@ -89,11 +89,11 @@ class GalleryActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        btnSendToBox.setOnClickListener {
+        btnSendToBox?.setOnClickListener {
             uploadCurrentFolderToDropbox()
         }
 
-        btnDeleteFolder.setOnClickListener {
+        btnDeleteFolder?.setOnClickListener {
             confirmDeleteFolder()
         }
     }
@@ -147,7 +147,10 @@ class GalleryActivity : AppCompatActivity() {
     }
 
     private fun uploadCurrentFolderToDropbox() {
-        if (currentSelectedDate.isEmpty()) return
+        if (currentSelectedDate.isEmpty()) {
+            Toast.makeText(this, "転送するフォルダがありません", Toast.LENGTH_SHORT).show()
+            return
+        }
         val uris = dateMap[currentSelectedDate] ?: return
 
         Toast.makeText(this, "Dropboxへ $currentSelectedDate フォルダを転送中...", Toast.LENGTH_LONG).show()
@@ -171,7 +174,12 @@ class GalleryActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("DropboxUpload", "Error: ${e.message}", e)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@GalleryActivity, "転送失敗。接続設定などを確認してください", Toast.LENGTH_LONG).show()
+                    val errorMsg = e.localizedMessage ?: "不明なエラー"
+                    if (errorMsg.contains("401")) {
+                        Toast.makeText(this@GalleryActivity, "認証エラー: トークンの期限が切れています", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this@GalleryActivity, "転送失敗: $errorMsg", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
