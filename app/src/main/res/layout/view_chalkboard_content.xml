@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="0.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="22"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#1D4D3A"
+            android:gravity="center"
+            android:text="業務名"
+            android:textColor="#FFFFFF"
+            android:textSize="5sp" />
+        <TextView
+            android:id="@+id/board_task_name_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:layout_marginStart="0.5dp"
+            android:background="#1D4D3A"
+            android:textColor="#FFFFFF"
+            android:paddingStart="4dp"
+            android:gravity="center_vertical|start"
+            android:textSize="5sp" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="68"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="工種" android:textColor="#FFFFFF" android:textSize="5sp" />
+                <TextView android:id="@+id/board_work_type" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="月日" android:textColor="#FFFFFF" android:textSize="5sp" />
+                <TextView android:id="@+id/board_date" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="位置" android:textColor="#FFFFFF" android:textSize="5sp" />
+                <TextView android:id="@+id/board_location" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="位置2" android:textColor="#FFFFFF" android:textSize="5sp" />
+                <TextView android:id="@+id/board_location_2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="0.5dp" android:layout_height="match_parent" android:background="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:background="#1D4D3A">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:text="備考"
+                android:textColor="#FFFFFF"
+                android:textSize="5sp" />
+            <TextView
+                android:id="@+id/board_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="5sp"
+                android:padding="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/board_jv_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:background="#1D4D3A"
+            android:gravity="center"
+            android:text="JV名"
+            android:textColor="#FFFFFF"
+            android:textSize="5sp" />
+    </LinearLayout>
+</LinearLayout>
