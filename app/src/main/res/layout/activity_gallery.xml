@@ -1,36 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#121212">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:background="#1F1F1F"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@+id/bottom_action_area">
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="全写真を送信"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:background="#1F1F1F"
+            android:gravity="end">
 
-        <Button
-            android:id="@+id/btnSendToBox"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btnSendToBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dropboxへ送信"
+                android:backgroundTint="#007AFF"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/gallery_tab_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BOXへ送信"
-            android:backgroundTint="#007AFF" />
+            android:background="#1F1F1F"
+            app:tabTextColor="#88FFFFFF"
+            app:tabSelectedTextColor="#FFFFFF"
+            app:tabIndicatorColor="#007AFF"
+            app:tabMode="scrollable" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            android:clipToPadding="false" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
+        android:id="@+id/bottom_action_area"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#1F1F1F"
+        android:padding="12dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnDeleteFolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="この日付フォルダを削除"
+            android:backgroundTint="#FF3B30"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

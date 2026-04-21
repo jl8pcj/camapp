@@ -51,5 +51,7 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.documentfile:documentfile:1.0.1")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.dropbox.core:dropbox-core-sdk:5.4.4")
 
 }
