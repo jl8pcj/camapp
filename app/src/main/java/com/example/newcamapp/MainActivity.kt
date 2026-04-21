@@ -1,5 +1,5 @@
 package com.example.newcamapp
-
+//123
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
