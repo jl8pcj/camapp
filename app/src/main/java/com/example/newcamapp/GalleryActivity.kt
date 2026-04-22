@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.http.OkHttp3Requestor
+import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import com.dropbox.core.v2.files.WriteMode
 import com.google.android.material.tabs.TabLayout
@@ -36,9 +37,11 @@ class GalleryActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var tabLayout: TabLayout
 
-    // ★【重要】Dropboxアクセストークン
-    // 短期トークンは数時間で切れるため、エラーが出る場合は再度生成してください
-    private val ACCESS_TOKEN = "sl.u.AGe8rMclH5JfbiiytGKmofLU87MjNSmDu51ZuGgYKZ8raTp6U7VXH3Y6aRDddpn22uGRBbk8MMwIoxY5pCu2GTMm2LKflYqQNJJ-n_7nLakgpV0OOPyjs8B6X2y4mqiDUx6L77yTx7XGGjj-_euizOmzE7GUskrjsV4JFzl6r_euPpAgqr7KSHuPVaFewIuyRFZBU6tOwWuRXbDE42o81VcSf0fQQVKrI2xXTv8B6Enh0QrHq8Ky5YUD0a5rZlhuZ-mjU27ik-jM8eSaiXliPsXRYa7KEtKMcyQUv6vQtLtyzDxq0yzUkazLRMn8m__LDzdVn5IzsgXDnC6YamubQSIrkarYMAc4mlX6H8SoJlhiwpIKW-qf8YUGA2A98-6m15KnLGdQy2NIswfeVqa4Vhhvwt60UhT-klmStmcO1R8aZClBayWRfWX5301h1MHI-ZmEhFae6zAda37AHK2ezN7iaGQgu-Y1TCU1GGtLetsJ31ALo0H50BIJucucSTfdpW7326Y5lfLeNE-yISi66G7Bh_MPRHhDBmXKGajPGieq2eC4G1wzJBxEQyeEMdkg7vvZz2WYI2cUCjnd_-_jWEreG4TDZ4D7eHqjgc4FpRUIzCx9yxxfbIYYdej0rnNArSIbvYvZvUjtnyTzqHjKSVF0ao6Z60PMuvpRLt-6WFgGnoJFEJahFSQJ2D3G-eTwtEb9LHpxLqwXHijWO3duwVJxQnIZaYek8zYEj4X-e1KbNDeyUqDqvua9om8kaEBt94NFDTL7TM_1AE8XV4qulRy5ktAfdhceKISa1sXlf7OGfQ0zITO_DIC9DVROgssfd7H5tij7gSqfHdyXmEWnVilsrQe443RYZBZ-aMArx4_ETJchiIOOl5CKg9QM7E6Pjfoay6RqC7u2g4ytMTJC05u7M9lZGu0CMSnraTEDNzZGKLyeOUf1hbxp9Bml7jcmpFP7dAerZoNUklt4DU-57zw5K-J5cU0D3PflJSfkd0E1R96Texs75njTc7T1KU4E_IccMxI-ZBxRA734GJRkY-bN56ROUG6UwEPACWEBRIfK7SABh62ScxGMa4PWgMHDv3UJdSFqdnFf0PxU6XKjeKS-q0GZaJUMbRMoZ0EOPIqmAkucq-8UjZnPv6vKhEkSelnTvKcWISdLG4ZcOvM2zvz9EIU__BXQTqLQ-u7Zl-mz83fV3gzi9TAA3K_59NoGfWeiE9Tyt4GOixtA1_1-VEcB3rj6mxeLzKiYFzzPmUUK3PW04mQun8DIaIE_HnPnDtjMtR7z-kbsYdAHp-4ugXgP"
+    // ★画像から抽出した最新の正しいトークンに差し替えました
+    private val REFRESH_TOKEN = "X8Ogs3jedLAAAAAAAAAAAdX899MydSQM8e_-5P5Z60lliQR4iJXRxl81YUmkc4oX"
+    private val ACCESS_TOKEN = "sl.u.AGezcO_sS3Ac_R8I-kL..." // SDK内部で即リフレッシュされるため、短くてもOK
+    private val APP_KEY = "kwps3743vkv4xqp"
+    private val APP_SECRET = "znr5vz3i6myjixw"
 
     private val dropboxClient by lazy {
         val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
@@ -59,7 +62,17 @@ class GalleryActivity : AppCompatActivity() {
             .withHttpRequestor(OkHttp3Requestor(okHttpClient))
             .build()
 
-        DbxClientV2(config, ACCESS_TOKEN)
+        // 画像 image_286402.png の内容に基づき設定
+        // 改行が含まれないよう文字列を直接指定
+        val credential = DbxCredential(
+            "dummy_access_token", // 初期値を入れておくことで Missing token を回避
+            0L,                   // 期限切れとして扱い、即座に refresh_token を使わせる
+            REFRESH_TOKEN,
+            APP_KEY,
+            APP_SECRET
+        )
+
+        DbxClientV2(config, credential)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,8 +142,10 @@ class GalleryActivity : AppCompatActivity() {
                     tabLayout.addTab(tabLayout.newTab().setText(date))
                 }
 
-                currentSelectedDate = dateMap.keys.first()
-                displayImagesForDate(currentSelectedDate)
+                if (tabLayout.tabCount > 0) {
+                    currentSelectedDate = dateMap.keys.first()
+                    displayImagesForDate(currentSelectedDate)
+                }
             }
         }
     }
@@ -174,12 +189,9 @@ class GalleryActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("DropboxUpload", "Error: ${e.message}", e)
                 withContext(Dispatchers.Main) {
+                    // エラーメッセージを分かりやすく表示
                     val errorMsg = e.localizedMessage ?: "不明なエラー"
-                    if (errorMsg.contains("401")) {
-                        Toast.makeText(this@GalleryActivity, "認証エラー: トークンの期限が切れています", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this@GalleryActivity, "転送失敗: $errorMsg", Toast.LENGTH_LONG).show()
-                    }
+                    Toast.makeText(this@GalleryActivity, "転送失敗: $errorMsg", Toast.LENGTH_LONG).show()
                 }
             }
         }
