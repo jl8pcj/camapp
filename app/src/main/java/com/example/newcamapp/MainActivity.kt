@@ -25,13 +25,11 @@ import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import com.google.android.material.tabs.TabLayout
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.chrono.JapaneseDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+// データクラス
 data class ChalkboardData(
     var taskName: String = "中央区公園及び街路樹等総合維持管理業務\n(中部地区)",
     var workType: String = "",
@@ -40,7 +38,7 @@ data class ChalkboardData(
     var location2: String = "",
     var jvName: String = "南香・高重・蔵田 特定JV",
     var remarkIndex: Int = 0,
-    var taskTextSize: Float = 10f
+    var taskTextSize: Float = 14f
 )
 
 class MainActivity : AppCompatActivity() {
@@ -53,13 +51,13 @@ class MainActivity : AppCompatActivity() {
     private var currentTabIndex = 0
     private var isUpdatingUI = false
 
-    private val BASE_SIZE_TASK = 9f
-    private val BASE_SIZE_WORK = 12f
-    private val BASE_SIZE_LOC2 = 10f
-    private val BASE_SIZE_JV = 8f
-    private val BASE_SIZE_REMARK = 15f
-    private val BASE_SIZE_LOC = 10f
-    private val BASE_SIZE_DATE = 10f
+    private val BASE_SIZE_TASK = 14f
+    private val BASE_SIZE_WORK = 13f
+    private val BASE_SIZE_LOC2 = 13f
+    private val BASE_SIZE_JV = 11f
+    private val BASE_SIZE_REMARK = 12f
+    private val BASE_SIZE_LOC = 12f
+    private val BASE_SIZE_DATE = 11f
 
     private val dirPickerLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
         uri?.let {
@@ -92,30 +90,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupActionButtons() {
-        val btnSettings = findViewById<View>(R.id.btn_settings)
-        btnSettings?.setOnClickListener {
+        findViewById<View>(R.id.btn_settings)?.setOnClickListener {
             dirPickerLauncher.launch(null)
         }
 
-        val btnGallery = findViewById<ImageButton>(R.id.btn_gallery)
-        btnGallery?.setOnClickListener {
-            openGallery()
+        findViewById<ImageButton>(R.id.btn_gallery)?.setOnClickListener {
+            val folderUriString = getSavedFolderPath()
+            if (folderUriString == null) {
+                Toast.makeText(this, "先に設定から保存先を選択してください", Toast.LENGTH_LONG).show()
+            } else {
+                val intent = Intent(this, GalleryActivity::class.java).apply {
+                    putExtra("folder_uri", folderUriString)
+                }
+                startActivity(intent)
+            }
         }
 
-        // 撮影ボタンの処理
-        val btnCapture = findViewById<View>(R.id.btn_capture)
-        btnCapture?.setOnClickListener {
-            // 1. キーボードを閉じる
+        findViewById<View>(R.id.btn_capture)?.setOnClickListener {
             hideKeyboard()
-
-            // 2. キーボードが完全に閉じてレイアウトが安定するまで少し待つ（300ms）
             Handler(Looper.getMainLooper()).postDelayed({
                 takePhoto()
             }, 300)
         }
 
-        val btnReset = findViewById<Button>(R.id.btn_reset_current_tab)
-        btnReset?.setOnClickListener {
+        findViewById<Button>(R.id.btn_reset_current_tab)?.setOnClickListener {
             resetCurrentTabData()
         }
     }
@@ -127,18 +125,6 @@ class MainActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
             view.clearFocus()
         }
-    }
-
-    private fun openGallery() {
-        val folderUriString = getSavedFolderPath()
-        if (folderUriString == null) {
-            Toast.makeText(this, "先に設定から保存先を選択してください", Toast.LENGTH_LONG).show()
-            return
-        }
-        val intent = Intent(this, GalleryActivity::class.java).apply {
-            putExtra("folder_uri", folderUriString)
-        }
-        startActivity(intent)
     }
 
     private fun takePhoto() {
@@ -155,14 +141,12 @@ class MainActivity : AppCompatActivity() {
         val previewBitmap = viewFinder.bitmap ?: return
         val boardView = findViewById<View>(R.id.mini_board) ?: return
 
-        // 描画前に最新のレイアウト確定を念押し
         val boardBitmap = Bitmap.createBitmap(boardView.width, boardView.height, Bitmap.Config.ARGB_8888)
         boardView.draw(Canvas(boardBitmap))
 
         val resultBitmap = previewBitmap.copy(Bitmap.Config.ARGB_8888, true)
         val canvas = Canvas(resultBitmap)
 
-        // 黒板の位置調整（右下に配置）
         canvas.drawBitmap(boardBitmap, (resultBitmap.width - boardView.width - 24).toFloat(), (resultBitmap.height - boardView.height - 24).toFloat(), null)
 
         try {
@@ -237,9 +221,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<RadioGroup>(R.id.rg_task_size)?.setOnCheckedChangeListener { _, checkedId ->
             if (!isUpdatingUI) {
                 boardList[currentTabIndex].taskTextSize = when (checkedId) {
-                    R.id.rb_size_3 -> 10f
-                    R.id.rb_size_4 -> 8f
-                    else -> 10f
+                    R.id.rb_size_3 -> 12f
+                    R.id.rb_size_4 -> 13f
+                    else -> 14f
                 }
                 updateChalkboardDisplay()
                 saveData()
@@ -268,24 +252,31 @@ class MainActivity : AppCompatActivity() {
             setTextSize(TypedValue.COMPLEX_UNIT_SP, BASE_SIZE_JV + offset)
         }
         findViewById<TextView>(R.id.board_remarks)?.apply {
-            text = arrayOf("作業前", "作業中", "作業後","")[d.remarkIndex]
+            text = arrayOf("", "作業前", "作業中", "作業後")[d.remarkIndex]
             setTextSize(TypedValue.COMPLEX_UNIT_SP, BASE_SIZE_REMARK + offset)
         }
         findViewById<TextView>(R.id.board_location)?.apply {
             text = if (d.location.isNotEmpty() || d.route.isNotEmpty()) "${d.location} / ${d.route}".trim(' ', '/') else ""
             setTextSize(TypedValue.COMPLEX_UNIT_SP, BASE_SIZE_LOC + offset)
         }
+
+        // ★修正箇所: 日本語の日付（和暦）を古いAPIでも動くように作成
         findViewById<TextView>(R.id.board_date)?.apply {
-            text = "R" + JapaneseDate.from(LocalDate.now()).format(DateTimeFormatter.ofPattern("y/MM/dd", Locale.JAPAN))
+            val cal = Calendar.getInstance()
+            val year = cal.get(Calendar.YEAR)
+            val warekiYear = year - 2018 // 2019年が令和1年
+            val month = cal.get(Calendar.MONTH) + 1
+            val day = cal.get(Calendar.DAY_OF_MONTH)
+            val dateStr = String.format(Locale.JAPAN, "R%d/%02d/%02d", warekiYear, month, day)
+            text = dateStr
             setTextSize(TypedValue.COMPLEX_UNIT_SP, BASE_SIZE_DATE + offset)
         }
     }
 
-
     private fun setupSpinners() {
         val r = arrayOf("", "あかしあ公園", "山麓公園", "どんぐり公園", "日新公園", "やちだも公園", "さくらんぼ公園", "北円山公園", "北４条かすみ公園", "南7条りんりん公園", "南１０条明星公園", "北４条まどか公園", "円山裏参道公園", "南６条西２２丁目広場", "南１条西１８丁目広場", "南２条みゆき公園", "南１４条あゆみ公園")
         val l = arrayOf("", "北５条線", "北４条線", "北３条線", "北２条線", "北１条線", "北大通線", "南大通線", "西２０丁目線", "西２１丁目線", "西２３丁目線", "西２４丁目線", "西２５丁目線")
-        val m = arrayOf("作業前", "作業中", "作業後","")
+        val m = arrayOf("", "作業前", "作業中", "作業後")
 
         val ls = findViewById<Spinner>(R.id.spinner_location_input)
         val rs = findViewById<Spinner>(R.id.spinner_route_input)
@@ -344,7 +335,7 @@ class MainActivity : AppCompatActivity() {
             location2 = ""
             jvName = "南香・高重・蔵田 特定JV"
             remarkIndex = 0
-            taskTextSize = 10f
+            taskTextSize = 14f
         }
         refreshUIFromData()
         saveData()
