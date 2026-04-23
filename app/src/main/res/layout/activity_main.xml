@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#222222">
 
-    <!-- 上部：カメラプレビューと黒板表示エリア -->
+    <!-- 上部：カメラプレビューと黒板 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:scaleType="fillCenter" />
 
-        <!-- ミニ黒板のプレビュー -->
+        <!-- 黒板プレビュー -->
         <FrameLayout
             android:id="@+id/mini_board"
             android:layout_width="0dp"
@@ -34,7 +34,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
             app:layout_constraintEnd_toEndOf="@+id/viewFinder">
 
-            <!-- ここで黒板のレイアウトを読み込む -->
             <include
                 layout="@layout/view_chalkboard_content"
                 android:layout_width="match_parent"
@@ -42,7 +41,7 @@
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 中間：メイン操作ボタンとタブ -->
+    <!-- 中央：操作ボタン -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +54,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:padding="10dp">
+
             <Button
                 android:id="@+id/btn_settings"
                 android:layout_width="wrap_content"
@@ -94,6 +94,7 @@
             app:tabIndicatorColor="#FF5722"
             app:tabIndicatorHeight="3dp"
             app:tabMode="fixed">
+
             <com.google.android.material.tabs.TabItem android:text="1"/>
             <com.google.android.material.tabs.TabItem android:text="2"/>
             <com.google.android.material.tabs.TabItem android:text="3"/>
@@ -103,7 +104,7 @@
         </com.google.android.material.tabs.TabLayout>
     </LinearLayout>
 
-    <!-- 下部：入力フォームエリア -->
+    <!-- 下部：入力フォーム -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -117,110 +118,300 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-            <!-- 工種入力 -->
-            <EditText
-                android:id="@+id/edit_work_type_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="text"
-                android:textColor="#000000"
-                android:hint="工種を入力"/>
-
-            <!-- 位置・測点選択 -->
+            <!-- 工種 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp">
-                <Spinner
-                    android:id="@+id/spinner_location_input"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/edit_work_type_input"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"/>
-                <Spinner
-                    android:id="@+id/spinner_route_input"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:hint="工種を入力"
+                    android:textColor="#000000"/>
+
+                <Button
+                    android:id="@+id/btn_size_work_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_work_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
             </LinearLayout>
 
-            <!-- 位置2 -->
-            <EditText
-                android:id="@+id/edit_location2_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="text"
-                android:hint="位置を入力"
-                android:textColor="#000000"/>
-
-            <!-- 備考 -->
-            <Spinner
-                android:id="@+id/spinner_remarks_input"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"/>
-
-            <!-- 黒板全体の文字サイズ選択 -->
+            <!-- 位置 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingVertical="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="文字サイズ"
-                    android:textColor="#333333"
-                    android:textSize="13sp" />
-                <RadioGroup
-                    android:id="@+id/rg_task_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:id="@+id/rb_size_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="大"
-                        android:textSize="14sp"
-                        android:checked="true"
-                        android:textColor="#000000"/>
-                    <RadioButton
-                        android:id="@+id/rb_size_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="小"
-                        android:textSize="14sp"
-                        android:textColor="#000000"/>
-                </RadioGroup>
+                android:layout_marginTop="12dp">
+
+                <Spinner
+                    android:id="@+id/spinner_location_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btn_size_location_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_location_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
             </LinearLayout>
 
-            <!-- 業務名入力 -->
-            <EditText
-                android:id="@+id/edit_task_name_input"
+            <!-- 測点 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textMultiLine"
-                android:text="中央区公園及び街路樹等総合維持管理業務\n(中部地区)"
-                android:textColor="#000000"
-                android:textSize="14sp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <!-- 施工者名/JV名 -->
-            <EditText
-                android:id="@+id/edit_jv_name_input"
+                <Spinner
+                    android:id="@+id/spinner_route_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+
+                <!-- ▲▼ の位置合わせ用ダミー -->
+                <Button
+                    android:id="@+id/btn_size_route_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent" />
+
+                <Button
+                    android:id="@+id/btn_size_route_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <!-- 位置2 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:text="南香・高重・蔵田 特定JV "
-                android:inputType="text"
-                android:importantForAutofill="no"
-                android:textColor="#000000"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <!-- 初期化ボタン -->
+                <EditText
+                    android:id="@+id/edit_location2_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="位置を入力"
+                    android:textColor="#000000"/>
+
+                <Button
+                    android:id="@+id/btn_size_location2_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_location2_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <!-- 備考 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Spinner
+                    android:id="@+id/spinner_remarks_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/btn_size_remarks_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_remarks_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <!-- 業務名 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/edit_task_name_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+                <Button
+                    android:id="@+id/btn_size_task_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_task_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <!-- JV名 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/edit_jv_name_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:textColor="#000000"/>
+
+                <Button
+                    android:id="@+id/btn_size_jv_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_jv_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <!-- 日付（自動） -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/text_date_label"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="日付（自動）"
+                    android:textColor="#000000"/>
+
+                <Button
+                    android:id="@+id/btn_size_date_up"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▲"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+                <Button
+                    android:id="@+id/btn_size_date_down"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="▼"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
+
+            </LinearLayout>
+
+            <!-- 初期化 -->
             <Button
                 android:id="@+id/btn_reset_current_tab"
                 android:layout_width="match_parent"
