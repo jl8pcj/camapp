@@ -30,11 +30,13 @@
             android:background="#1D4D3A"
             android:textColor="#FFFFFF"
             android:paddingStart="4dp"
-            android:gravity="end"
-            android:textSize="3sp" />
+            android:gravity="center_horizontal"
+            android:textSize="5sp" />
     </LinearLayout>
 
-    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,31 +50,121 @@
             android:layout_weight="5"
             android:orientation="vertical">
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
-                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="工種" android:textColor="#FFFFFF" android:textSize="5sp" />
-                <TextView android:id="@+id/board_work_type" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="17"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:text="工種"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
+                <TextView
+                    android:id="@+id/board_work_type"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:layout_marginStart="0.5dp"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
             </LinearLayout>
-            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+            <View android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#FFFFFF" />
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
-                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="月日" android:textColor="#FFFFFF" android:textSize="5sp" />
-                <TextView android:id="@+id/board_date" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="17"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:text="月日"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
+                <TextView android:id="@+id/board_date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:layout_marginStart="0.5dp"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
             </LinearLayout>
-            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+            <View android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#FFFFFF" />
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
-                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="位置" android:textColor="#FFFFFF" android:textSize="5sp" />
-                <TextView android:id="@+id/board_location" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="17"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:text="位置"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
+                <TextView android:id="@+id/board_location"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:layout_marginStart="0.5dp"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
             </LinearLayout>
-            <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+            <View android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#FFFFFF" />
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="17" android:orientation="horizontal">
-                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="#1D4D3A" android:gravity="center" android:text="" android:textColor="#FFFFFF" android:textSize="5sp" />
-                <TextView android:id="@+id/board_location_2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:layout_marginStart="0.5dp" android:background="#1D4D3A" android:gravity="center" android:textColor="#FFFFFF" android:textSize="5sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="17"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
+                <TextView
+                    android:id="@+id/board_location_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:layout_marginStart="0.5dp"
+                    android:background="#1D4D3A"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="5sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <View android:layout_width="0.5dp" android:layout_height="match_parent" android:background="#FFFFFF" />
+        <View android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -94,12 +186,14 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
-                android:textSize="8sp"
+                android:textSize="10sp"
                 android:padding="4dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:background="#FFFFFF" />
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"

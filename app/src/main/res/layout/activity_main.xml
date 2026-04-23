@@ -138,8 +138,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -148,8 +148,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -160,8 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="12dp">
+                android:gravity="center_vertical">
 
                 <Spinner
                     android:id="@+id/spinner_location_input"
@@ -176,8 +175,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -186,8 +185,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -214,8 +213,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent" />
 
                 <Button
@@ -223,8 +222,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent" />
 
             </LinearLayout>
@@ -249,8 +248,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -259,8 +258,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -277,15 +276,16 @@
                     android:id="@+id/spinner_remarks_input"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"/>
 
                 <Button
                     android:id="@+id/btn_size_remarks_up"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -294,8 +294,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -321,8 +321,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -331,8 +331,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -350,15 +350,16 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:textColor="#000000"/>
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
 
                 <Button
                     android:id="@+id/btn_size_jv_up"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -367,8 +368,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -394,8 +395,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▲"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
@@ -404,8 +405,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="▼"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textColor="#576128"
+                    android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
 
