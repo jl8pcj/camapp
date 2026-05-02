@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="#222222">
 
-    <!-- 上部：カメラプレビューと黒板 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,7 +22,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:scaleType="fillCenter" />
 
-        <!-- 黒板プレビュー -->
         <FrameLayout
             android:id="@+id/mini_board"
             android:layout_width="0dp"
@@ -33,7 +31,6 @@
             app:layout_constraintDimensionRatio="4:3"
             app:layout_constraintBottom_toBottomOf="@+id/viewFinder"
             app:layout_constraintEnd_toEndOf="@+id/viewFinder">
-
             <include
                 layout="@layout/view_chalkboard_content"
                 android:layout_width="match_parent"
@@ -41,20 +38,17 @@
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 中央：操作ボタン -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#333333">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
             android:padding="10dp">
-
             <Button
                 android:id="@+id/btn_settings"
                 android:layout_width="wrap_content"
@@ -62,7 +56,6 @@
                 android:text="設定"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:textColor="#FFFFFF"/>
-
             <Button
                 android:id="@+id/btn_capture"
                 android:layout_width="0dp"
@@ -73,7 +66,6 @@
                 android:textStyle="bold"
                 android:layout_marginHorizontal="12dp"
                 android:backgroundTint="#FF5722"/>
-
             <ImageButton
                 android:id="@+id/btn_gallery"
                 android:layout_width="60dp"
@@ -83,7 +75,6 @@
                 android:padding="2dp"
                 android:contentDescription="ギャラリー" />
         </LinearLayout>
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
@@ -94,7 +85,6 @@
             app:tabIndicatorColor="#FF5722"
             app:tabIndicatorHeight="3dp"
             app:tabMode="fixed">
-
             <com.google.android.material.tabs.TabItem android:text="1"/>
             <com.google.android.material.tabs.TabItem android:text="2"/>
             <com.google.android.material.tabs.TabItem android:text="3"/>
@@ -104,7 +94,6 @@
         </com.google.android.material.tabs.TabLayout>
     </LinearLayout>
 
-    <!-- 下部：入力フォーム -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -118,307 +107,301 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-            <!-- 工種 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
                 <EditText
                     android:id="@+id/edit_work_type_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="工種を入力"
-                    android:textColor="#000000"/>
-
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:padding="10dp"/>
                 <Button
                     android:id="@+id/btn_size_work_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_work_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 位置 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路線名"
+                    android:textColor="#a9a9a9"
+                    android:textSize="16sp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="8dp"/>
 
                 <Spinner
                     android:id="@+id/spinner_location_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
-
+                    android:layout_height="56dp"
+                    android:layout_weight="1" />
                 <Button
                     android:id="@+id/btn_size_location_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_location_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 測点 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="公園名"
+                    android:textColor="#a9a9a9"
+                    android:textSize="16sp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="8dp"/>
 
                 <Spinner
                     android:id="@+id/spinner_route_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
-
-                <!-- ▲▼ の位置合わせ用ダミー -->
+                    android:layout_height="56dp"
+                    android:layout_weight="1" />
                 <Button
                     android:id="@+id/btn_size_route_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
-                    android:backgroundTint="@android:color/transparent" />
-
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
                 <Button
                     android:id="@+id/btn_size_route_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
-                    android:backgroundTint="@android:color/transparent" />
-
+                    android:backgroundTint="@android:color/transparent"
+                    android:padding="0dp" />
             </LinearLayout>
-
-            <!-- 位置2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
                 <EditText
                     android:id="@+id/edit_location2_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="位置を入力"
-                    android:textColor="#000000"/>
-
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:padding="10dp"/>
                 <Button
                     android:id="@+id/btn_size_location2_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_location2_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 備考 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
                 <Spinner
                     android:id="@+id/spinner_remarks_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:paddingStart="8dp"/>
-
+                    android:layout_height="56dp"
+                    android:layout_weight="1" />
                 <Button
                     android:id="@+id/btn_size_remarks_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_remarks_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 業務名 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp"
+                android:layout_marginTop="100dp">
                 <EditText
                     android:id="@+id/edit_task_name_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="業務名を入力"
                     android:textColor="#000000"
-                    android:textSize="14sp"/>
-
+                    android:textSize="16sp"
+                    android:padding="10dp"/>
                 <Button
                     android:id="@+id/btn_size_task_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_task_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- JV名 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
                 <EditText
                     android:id="@+id/edit_jv_name_input"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="JV名を入力"
                     android:textColor="#000000"
-                    android:textSize="14sp"/>
-
+                    android:textSize="16sp"
+                    android:padding="10dp"/>
                 <Button
                     android:id="@+id/btn_size_jv_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_jv_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 日付（自動） -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:minHeight="70dp">
                 <TextView
                     android:id="@+id/text_date_label"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="日付（自動）"
-                    android:textColor="#000000"/>
-
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:padding="10dp"/>
                 <Button
                     android:id="@+id/btn_size_date_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▲"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
                 <Button
                     android:id="@+id/btn_size_date_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:text="▼"
                     android:textColor="#576128"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/transparent"
                     android:padding="0dp" />
-
             </LinearLayout>
 
-            <!-- 初期化 -->
             <Button
                 android:id="@+id/btn_reset_current_tab"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
                 android:text="このタブの入力を初期化"
+                android:textSize="16sp"
                 android:backgroundTint="#666666"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

@@ -31,12 +31,12 @@ import java.util.concurrent.Executors
 
 // ★ 初期値をすべて 3f に統一
 data class ChalkboardData(
-    var taskName: String = "中央区公園及び街路樹等総合維持管理業務\n(中部地区)",
+    var taskName: String = "",
     var workType: String = "",
     var location: String = "",
     var route: String = "",
     var location2: String = "",
-    var jvName: String = "南香・高重・蔵田 特定JV",
+    var jvName: String = "",
     var remarkIndex: Int = 0,
 
     var sizeTaskName: Float = 5f,
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
     private fun takePhoto() {
         val folderUriString = getSavedFolderPath()
             ?: return Toast.makeText(this, "保存先を設定してください", Toast.LENGTH_SHORT).show()
-
+        val client = DropboxClientFactory.getClient(this)
         val now = Date()
         val folderName = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(now)
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(now)
@@ -176,26 +176,32 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadAllData() {
         val prefs = getSharedPreferences("chalkboard_prefs", Context.MODE_PRIVATE)
+        // properties ファイルの読み込み
+        val props = DropboxClientFactory.loadConfig(this)
+        val defaultTask = props.getProperty("task_name_default", "初期業務名").replace("\\n", "\n")
+        val defaultJV = props.getProperty("jv_name_default", "初期JV名")
+
         for (i in 0..5) {
             val p = "tab_${i}_"
             boardList[i].apply {
-                taskName = prefs.getString("${p}taskName", taskName) ?: taskName
+                // 保存データがあればそれを使い、なければ properties の値を初期値にする
+                taskName = prefs.getString("${p}taskName", defaultTask) ?: defaultTask
+                jvName = prefs.getString("${p}jvName", defaultJV) ?: defaultJV
+
                 workType = prefs.getString("${p}workType", "") ?: ""
                 location = prefs.getString("${p}location", "") ?: ""
                 route = prefs.getString("${p}route", "") ?: ""
                 location2 = prefs.getString("${p}location2", "") ?: ""
-                jvName = prefs.getString("${p}jvName", jvName) ?: jvName
                 remarkIndex = prefs.getInt("${p}remarkIndex", 0)
 
-                // ★ 保存されていなければ初期値 3f を使う
-                sizeTaskName = prefs.getFloat("${p}sizeTaskName", 3f)
-                sizeWorkType = prefs.getFloat("${p}sizeWorkType", 3f)
-                sizeLocation = prefs.getFloat("${p}sizeLocation", 3f)
-                sizeRoute = prefs.getFloat("${p}sizeRoute", 3f)
-                sizeLocation2 = prefs.getFloat("${p}sizeLocation2", 3f)
-                sizeRemarks = prefs.getFloat("${p}sizeRemarks", 3f)
-                sizeJVName = prefs.getFloat("${p}sizeJVName", 3f)
-                sizeDate = prefs.getFloat("${p}sizeDate", 3f)
+                sizeTaskName = prefs.getFloat("${p}sizeTaskName", 5f)
+                sizeWorkType = prefs.getFloat("${p}sizeWorkType", 6f)
+                sizeLocation = prefs.getFloat("${p}sizeLocation", 5f)
+                sizeRoute = prefs.getFloat("${p}sizeRoute", 5f)
+                sizeLocation2 = prefs.getFloat("${p}sizeLocation2", 5f)
+                sizeRemarks = prefs.getFloat("${p}sizeRemarks", 11f)
+                sizeJVName = prefs.getFloat("${p}sizeJVName", 5f)
+                sizeDate = prefs.getFloat("${p}sizeDate", 7f)
             }
         }
     }
@@ -360,9 +366,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupSpinners() {
-        val r = arrayOf("公園名（どちらか空白）", "", "あかしあ公園", "山麓公園", "どんぐり公園", "日新公園", "やちだも公園", "さくらんぼ公園", "北円山公園", "北４条かすみ公園", "南7条りんりん公園", "南１０条明星公園", "北４条まどか公園", "円山裏参道公園", "南６条西２２丁目広場", "南１条西１８丁目広場", "南２条みゆき公園", "南１４条あゆみ公園")
-        val l = arrayOf("路線名", "", "北５条線", "北４条線", "北３条線", "北２条線", "北１条線", "北大通線", "南大通線", "西２０丁目線", "西２１丁目線", "西２３丁目線", "西２４丁目線", "西２５丁目線")
-        val m = arrayOf("作業前", "作業中", "作業後", "")
+        // 1. 設定ファイルを読み込む
+        val props = DropboxClientFactory.loadConfig(this)
+
+        // 2. カンマ区切りの文字列を配列に変換（設定がなければデフォルト値を使用）
+        val l = props.getProperty("spinner_location")?.split(",")?.toTypedArray()
+            ?: arrayOf("路線名", "", "北５条線") // フォールバック用
+
+        val r = props.getProperty("spinner_route")?.split(",")?.toTypedArray()
+            ?: arrayOf("公園名", "", "あかしあ公園")
+
+        val m = arrayOf("作業前", "作業中", "作業後", "") // 固定値
 
         val ls = findViewById<Spinner>(R.id.spinner_location_input)
         val rs = findViewById<Spinner>(R.id.spinner_route_input)
@@ -435,13 +449,16 @@ class MainActivity : AppCompatActivity() {
 
     // ★ 初期化時も 3f に統一
     private fun resetCurrentTabData() {
+        val props = DropboxClientFactory.loadConfig(this)
+
         boardList[currentTabIndex].apply {
-            taskName = "中央区公園及び街路樹等総合維持管理業務\n(中部地区)"
+            // \n を実際の改行コードに置換して読み込む
+            taskName = props.getProperty("task_name_default", "デフォルト業務名").replace("\\n", "\n")
+            jvName = props.getProperty("jv_name_default", "デフォルトJV名")
             workType = ""
             location = ""
             route = ""
             location2 = ""
-            jvName = "南香・高重・蔵田 特定JV"
             remarkIndex = 0
 
             sizeTaskName = 5f

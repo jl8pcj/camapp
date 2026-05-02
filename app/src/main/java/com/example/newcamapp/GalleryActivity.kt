@@ -216,7 +216,7 @@ class GalleryActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val client = DropboxClientFactory.getClient()
+                val client = DropboxClientFactory.getClient(this@GalleryActivity)
                 for (uri in allImageUris) {
                     // ここも fromSingleUri だとストリームが開けない場合があるため注意
                     val file = DocumentFile.fromSingleUri(this@GalleryActivity, uri) ?: continue
